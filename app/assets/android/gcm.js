@@ -4,9 +4,9 @@
 
 	var serviceIntent = service.getIntent(),
 	title = serviceIntent.hasExtra('title') ? serviceIntent.getStringExtra('title') : '',
-	statusBarMessage = serviceIntent.hasExtra('message') ? serviceIntent.getStringExtra('message') : '',
 	message = serviceIntent.hasExtra('message') ? serviceIntent.getStringExtra('message') : '',
-	notificationId = (function () {
+	statusBarMessage = serviceIntent.hasExtra('message') ? message : title,
+	notificationId = 1; /*(function () {
 		// android notifications ids are int32
 		// java int32 max value is 2.147.483.647, so we cannot use javascript millis timpestamp
 		// let's make a valid timed based id:
@@ -36,7 +36,7 @@
 		str += ml;
 
 		return str | 0;
-	})();
+	})();*/
 		
 	// create launcher intent
 	var ntfId = Ti.App.Properties.getInt('ntfId', 0),
@@ -63,7 +63,8 @@
 		contentText: message,
 		tickerText: statusBarMessage,
 		icon: Ti.App.Android.R.drawable.appicon,
-		flags: Ti.Android.FLAG_AUTO_CANCEL | Ti.Android.FLAG_SHOW_LIGHTS
+		flags: Ti.Android.FLAG_AUTO_CANCEL | Ti.Android.FLAG_SHOW_LIGHTS,
+		defaults: Ti.Android.DEFAULT_ALL
 	});
 	Ti.Android.NotificationManager.notify(notificationId, notification);
 

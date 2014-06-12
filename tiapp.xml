@@ -42,6 +42,17 @@
                 android:name="mx.taste.pushwooshtest.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
             <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
             <application>
+<!--uses-permission android:name="mx.taste.pushwooshtest.permission.C2D_MESSAGE"/>
+<activity android:name=".AlloyprojectActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|screenSize">
+<intent-filter>
+	<action android:name="android.intent.action.MAIN"/>
+	<category android:name="android.intent.category.LAUNCHER"/>
+</intent-filter>
+<intent-filter>
+	<action android:name="mx.taste.pushwooshtest.MESSAGE"/>
+	<category android:name="android.intent.category.DEFAULT"/>
+</intent-filter>
+</activity-->
                 <activity android:name="com.arellomobile.android.push.PushWebview"/>
                 <activity android:name="com.arellomobile.android.push.MessageActivity"/>
                 <activity android:name="com.arellomobile.android.push.PushHandlerActivity"/>
@@ -67,10 +78,10 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-	<property name="GCM_sender_id" type="string">230593967008</property>
+<property name="GCM_sender_id" type="string">230593967008</property>
     <modules>
         <!--module platform="android">com.arellomobile.push</module-->
-		<module platform="android" version="0.2">net.iamyellow.gcmjs</module>
+<module platform="android" version="0.2">net.iamyellow.gcmjs</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>

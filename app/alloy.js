@@ -29,6 +29,35 @@
 		}
 	});
 */
+/*
+var pushnotifications = require('com.arellomobile.push');
+
+function messageCallback(data) {
+	Ti.API.info('Push message event: ' + data);
+}
+
+var pendingData = pushnotifications.data;
+if (pendingData && pendingData !== null) {
+	messageCallback(pendingData.data);
+}
+
+pushnotifications.pushNotificationsRegister("230593967008", "77495-A41E6", {
+	success : function(e) {
+		Ti.API.info('JS registration success event: ' + e.registrationId);
+	},
+	error : function(e) {
+		Ti.API.error("Error during registration: " + e.error);
+	},
+	callback : function(e) // called when a push notification is received
+	{
+		messageCallback(e.data);
+	}
+});
+*/
+
+
+Ti.include('pushwoosh.js');
+PushWoosh.appCode = "77495-A41E6";
 
 var gcm = require('net.iamyellow.gcmjs');
 
@@ -45,6 +74,11 @@ gcm.registerForPushNotifications({
 	success: function (ev) {
 		// on successful registration
 		Ti.API.info('******* success, ' + ev.deviceToken);
+		PushWoosh.register(function(data) {
+			//Ti.API.debug("PushWoosh register success: " + JSON.stringify(data));
+		}, function(e) {
+			Ti.API.warn("Couldn't register with PushWoosh: " + JSON.stringify(e));
+		});
 	},
 	error: function (ev) {
 		// when an error occurs
