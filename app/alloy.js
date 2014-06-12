@@ -57,7 +57,7 @@ pushnotifications.pushNotificationsRegister("230593967008", "77495-A41E6", {
 
 
 Ti.include('pushwoosh.js');
-PushWoosh.appCode = "77495-A41E6";
+PushWoosh.appCode = "B69E3-A7360";
 
 var gcm = require('net.iamyellow.gcmjs');
 
@@ -74,8 +74,9 @@ gcm.registerForPushNotifications({
 	success: function (ev) {
 		// on successful registration
 		Ti.API.info('******* success, ' + ev.deviceToken);
+		PushWoosh.deviceToken = ev.deviceToken;
 		PushWoosh.register(function(data) {
-			//Ti.API.debug("PushWoosh register success: " + JSON.stringify(data));
+			Ti.API.debug("PushWoosh register success: " + JSON.stringify(data));
 		}, function(e) {
 			Ti.API.warn("Couldn't register with PushWoosh: " + JSON.stringify(e));
 		});
